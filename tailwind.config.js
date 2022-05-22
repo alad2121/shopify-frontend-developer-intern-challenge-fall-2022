@@ -5,8 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'heading':['Nunito Sans','sans-serif'],
-        'heading2' :['Inter' , 'sans-serif']
+        'heading' :['Inter' , 'sans-serif']
       }
     },
   },

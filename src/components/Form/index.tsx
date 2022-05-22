@@ -8,17 +8,26 @@ import "./index.css";
 
 const Form = () => {
   const input = useRef<string>("");
+  const selectedOption = useRef<string>("text-davinci-002");
+
+  const [loading, setLoading] = useState<string>("Submit");
   const [cards, setCards] = useState<Array<any>>(() => {
     const saved = localStorage?.getItem("data");
     const initalValue = JSON.parse(String(saved));
 
     return initalValue || [];
   });
-  const selectedOption = useRef<string>("text-davinci-002");
 
   useEffect(() => {
+    const clearButton = document.getElementById("clearList");
+    if (!cards.length) {
+      clearButton?.setAttribute("disabled", "");
+    } else {
+      clearButton?.removeAttribute("disabled");
+    }
     localStorage.setItem("data", JSON.stringify(cards));
   }, [cards]);
+
   const changed = (e: any) => {
     selectedOption.current = e.target.value;
   };
@@ -27,14 +36,18 @@ const Form = () => {
     if (input.current) {
       const textArea = document.getElementById("prompt");
 
-      const submitButton = document.getElementById("Submit");
-
-      submitButton!.innerText = "Loading..";
       textArea?.classList.remove("error");
+
+      setLoading("Loading..");
       const data = {
         prompt: input.current,
+        temperature: 0.5,
         max_tokens: 64,
+        top_p: 1.0,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
       };
+
       await fetch(
         `https://api.openai.com/v1/engines/${selectedOption.current}/completions`,
         {
@@ -60,16 +73,14 @@ const Form = () => {
             ]);
           });
 
-          submitButton!.innerText = "Submit";
+          setLoading("Submit");
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
       const textArea = document.getElementById("prompt");
-
       textArea?.classList.add("error");
-      console.log("No input");
     }
   };
 
@@ -93,7 +104,7 @@ const Form = () => {
   const displayCards = () => {
     return cards.map((card, index) => {
       return (
-        <div>
+        <div key={index}>
           <Card
             key={index}
             type={card.option}
@@ -109,7 +120,7 @@ const Form = () => {
   return (
     <div className="text-center w-6/12 mt-10">
       <div className="flex flex-row justify-center mb-10">
-        <SubHeader title="Engine:" />
+        <SubHeader title="Choose an engine:" />
         <FormDropdown
           change={changed}
           list={[
@@ -129,10 +140,11 @@ const Form = () => {
           className="textarea w-9/12 h-60 border-2 focus:border-blue-400 text-[black]"
           onChange={(e) => (input.current = e.target.value)}
           id="prompt"
+          defaultValue={input.current}
         ></textarea>
       </div>
 
-      <FormButton onSubmit={onSubmit} title="Submit" />
+      <FormButton id="Submit" onSubmit={onSubmit} title={loading} />
 
       <div className="flex flex-row mt-20 text-left">
         <div className="w-6/12">
@@ -141,7 +153,7 @@ const Form = () => {
 
         <div className="w-full">
           <div className="float-right">
-            <FormButton onSubmit={clear} title="clear list" />
+            <FormButton id="clearList" onSubmit={clear} title="Clear" />
           </div>
         </div>
       </div>

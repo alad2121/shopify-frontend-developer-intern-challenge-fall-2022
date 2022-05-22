@@ -1,21 +1,21 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 interface Props {
   title: string;
-  onSubmit: any;
+  onSubmit: MouseEventHandler;
+  id: string;
 }
 
-const Button: React.FC<Props> = ({ title, onSubmit }) => {
+const Button: React.FC<Props> = ({ title, onSubmit, id }) => {
   return (
     <div>
-      <button onClick={onSubmit} type="button">
-        <a
-          href="#_"
-          className="px-5 py-2.5 relative rounded group overflow-hidden font-medium bg-[whitesmoke] text-blue-600 inline-block"
-        >
-          <span className="absolute top-0 left-0 flex w-full h-0 mb-0 transition-all duration-200 ease-out transform translate-y-0 bg-blue-600 group-hover:h-full opacity-90"></span>
-          <span id={title} className={`relative group-hover:text-white`}>{title}</span>
-        </a>
+      <button
+        id={id}
+        onClick={onSubmit}
+        type="button"
+        className="px-6 py-2 text-sm rounded shadow font-heading bg-emerald-100 hover:bg-emerald-200 text-emerald-500"
+      >
+        {title}
       </button>
     </div>
   );
