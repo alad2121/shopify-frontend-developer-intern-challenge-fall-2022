@@ -9,8 +9,6 @@ This application allows users to send a prompt to the OpenAI API and receive a r
 - React
 - TypeScript
 - Tailwind CSS
-- OpenAI API
-- Fetch API
 - CSS
 
 ## Features
