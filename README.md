@@ -16,7 +16,7 @@ This application allows users to send a prompt to the OpenAI API and receive a r
 ## Features
 - Submit a prompt and receive a response back from the AI.
 - Allows the user to delete all the responses at once.
-- Automatically saves responses within the local storage. 
+- Save responses if the user leaves or reloads the page
 - Lets the user choose which AI engine they prefer.
 
 ## Future Implementation
