@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import SubHeader from "../Headers/SubHeader";
 import Card from "./Card";
-import FormButton from "../Form/Button";
+import FormButton from "./Button/Button";
 import FormDropdown from "./Dropdown/Dropdown";
 import "./index.css";
 
