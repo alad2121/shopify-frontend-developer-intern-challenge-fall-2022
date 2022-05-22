@@ -12,7 +12,7 @@ This application allows users to send a prompt to the OpenAI API and receive a r
 - CSS
 
 ## Features
-- Submit a prompt and receive a response back from the AI.
+- Submit a prompt and receive a response back from an AI engine.
 - Allows the user to delete all the responses at once.
 - Save responses if the user leaves or reloads the page
 - Lets the user choose which AI engine they prefer.
