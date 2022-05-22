@@ -18,7 +18,7 @@ This application allows users to send a prompt to the OpenAI API and receive a r
 - Lets the user choose which AI engine they prefer.
 
 ## Future Implementation
-- Allow the user to delete an individual prompt and response section.
+- Allow the user to delete an individual response.
 - Add a suggestions section for the user.
 
 
