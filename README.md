@@ -1,7 +1,7 @@
 # OpenAI Application
 
 
-## <a href="http://...](https://shopifyopenai.herokuapp.com/" target="_blank">Deployed Site</a>
+## <a href="https://shopifyopenai.herokuapp.com/" target="_blank">Deployed Site</a>
 
 ## Description
 This application allows users to send a prompt to the OpenAI API and receive a response created by an AI engine from OpenAI.
